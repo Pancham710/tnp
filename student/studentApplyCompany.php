@@ -9,13 +9,19 @@ if (!isset($_SESSION["student_email"])) {
 }
 
 
+
+$sql = "SELECT id FROM studentlogin WHERE email = '" . $_SESSION["student_email"] . "'";
+$resulta = $conn->query($sql);
+
+$student_id = (int)$resulta->fetch_assoc()["id"];
+ 
 // Code To Get Username 
 
 $sql = "SELECT StudentName,YOP,AggregatePercentage,DiplomaHSCPercentage,SSCPercentage FROM studentprofiles WHERE EmailId = '" . $_SESSION["student_email"] . "'";
 $result = $conn->query($sql);
 
 $user_details = $result->fetch_assoc();
-$user_name=$user_details["StudentName"];
+$user_name = $user_details["StudentName"];
 $YOP = (int)$user_details["YOP"];
 $SSCPercentage = (float)$user_details["SSCPercentage"];
 $DiplomaHSCPercentage = (float)$user_details["DiplomaHSCPercentage"];
@@ -89,7 +95,6 @@ $AggregatePercentage = (float)$user_details["AggregatePercentage"];
                 <th scope="col">Registration End Date</th>
                 <th scope="col">View All Details</th>
                 <th scope="col">Apply Now</th>
-                <th scope="col">Apply Status</th>
             </tr>
         </thead>
         <tbody>
@@ -110,32 +115,29 @@ $AggregatePercentage = (float)$user_details["AggregatePercentage"];
                 echo '<td>' . $row['RegistrationEndDate'] . '</td>';
                 echo '<td>' . '<a href="#" style="text-decoration: none; color: black;">View Details</a>' . '</td>';
                 $eligible = true;
-                
-                if((int)$row['PassoutYear'] != $YOP){
-                    $eligible=false;
+
+                if ((int)$row['PassoutYear'] != $YOP) {
+                    $eligible = false;
                 }
-                if($SSCPercentage < (float)$row['SSCPercentage']){
-                    $eligible=false;
+                if ($SSCPercentage < (float)$row['SSCPercentage']) {
+                    $eligible = false;
                 }
-                if($DiplomaHSCPercentage < (float)$row['HSCPercentage']){
-                    $eligible=false;
+                if ($DiplomaHSCPercentage < (float)$row['HSCPercentage']) {
+                    $eligible = false;
                 }
-                if($AggregatePercentage < (float)$row['AggregatePercentage']){
-                    $eligible=false;
+                if ($AggregatePercentage < (float)$row['AggregatePercentage']) {
+                    $eligible = false;
                 }
-            
-                if($eligible){
-                    echo '<td>' . '<button type="button" class="btn btn-outline-success">Apply</button>' . '</td>';
+
+                if ($eligible) {
+                    echo '<td>' . '<a href="applyCompanyAPI.php?company_id='.$row['ID'].'&student_id='.$student_id.'" ><button type="submit" class="btn btn-outline-success">Apply</button></a>' . '</td>';
                 } else {
                     echo '<td style="color:red;">Ineligible</td>';
                 }
-                echo '<td>' . '<div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                        <label class="form-check-label" for="flexSwitchCheckDefault">Yes</label>
-                      </div>' . '</td>';
 
 
-                
+
+
                 $no += 1;
             }
             ?>

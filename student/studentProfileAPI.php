@@ -44,7 +44,9 @@ if (isset($_POST['MyProfile'])) {
         
         
         
-        echo "New record created successfully";
+        echo "New record created successfully<br><br>";
+
+        echo "<a href='' class='btn btn-success'>GO TO DASHBOARD</a>";
         // move_uploaded_file($_FILES['profilepictureid']['tmp_name'], './student/ProfilePictures/'.$_FILES['profilepictureid']);
         move_uploaded_file($ProfilePictureTempName, $ProfilePictureFolder);
         move_uploaded_file($ResumeTempName, $ResumeFolder);

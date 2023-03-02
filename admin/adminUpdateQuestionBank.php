@@ -56,7 +56,7 @@
                         echo '<tr>';
                         echo '<td>'.$row['ID'].'</td>';
                         echo '<td>'.$row['CompanyName'].'</td>';
-                        echo '<td>'.'<a href="./adminAddQuestion.php" style="text-decoration: none; color: black;">Update</a>'.'</td>';
+                        echo '<td>'.'<a href="./adminAddQuestion.php?id='.$row['ID'].'" style="text-decoration: none; color: black;">Update</a>'.'</td>';
                         echo '</tr>';
                     }
                 ?>

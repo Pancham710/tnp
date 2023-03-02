@@ -4,24 +4,23 @@ session_start();
 
 include "../connection.php";
 
- 
 
-if(isset($_POST["email"]) && isset($_POST["password"])){
-    $Email = $_POST["email"];
-    $Password  = $_POST["password"];
-    $sql = "SELECT id  FROM adminlogin WHERE email = '".$Email."' AND password = '".$Password."' " ;
-    $result = $conn->query($sql);
- 
-    if ($result->num_rows > 0) {
-        //Login Success
-        $_SESSION["admin_email"] = $Email;
-        header('location: ./adminDashboard.php');
+$company = $_POST["company"];
+$questions = $_POST["questions"];
+if(strlen($company) > 0 && strlen($questions) > 0){
+    $sql_query = "INSERT INTO  questionbank (CompanyName,Questions)
+    VALUES('$company', '$questions')";
+
+    if ($conn->query($sql_query) === TRUE) {
+        header('location: ./adminUpdateQuestionBank.php');
+        exit;
     } else {
-        //Login Fail
-        header('location: ./adminLogin.php?error=Invalid Credentials');
+        header('location: ./adminCompanyQuestion.php?error=Something went wrong.');
         exit;
     }
+
 } else {
-    header('location: ./adminLogin.php?error=Please Fill All The Details');
+    header('location: ./adminCompanyQuestion.php?error=Please fill all the details.');
     exit;
 }
+ 

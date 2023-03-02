@@ -31,12 +31,11 @@ $AggregatePercentage = (float)$user_details["AggregatePercentage"];
 $sqlCompanies = "SELECT company_id FROM appliedcompanies WHERE student_id = '".$student_id."'";
 $resultCompanies = $conn->query($sqlCompanies);
 
-$company_ids = array();  
+$company_ids = array(0);  
 
 while ($row = $resultCompanies->fetch_assoc()) {
     $company_ids[] = $row['company_id']; 
 }
- 
 
 ?>
 

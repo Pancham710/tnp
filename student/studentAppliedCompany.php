@@ -1,15 +1,29 @@
-<?php 
+<?php
 session_start();
-
-if(!isset($_SESSION["student_email"])){
+require('../connection.php');
+if (!isset($_SESSION["student_email"])) {
     header('location: ./studentLogin.php?error=Please login before accessing the page.');
     exit;
 }
+
+$sql = "SELECT id FROM studentlogin WHERE email = '" . $_SESSION["student_email"] . "'";
+$resulta = $conn->query($sql);
+
+$student_id = (int)$resulta->fetch_assoc()["id"];
+
+
+$sqlCompanies = "SELECT company_id FROM appliedcompanies WHERE student_id = '" . $student_id . "'";
+$resultCompanies = $conn->query($sqlCompanies);
+
+$company_ids = array();
+
+while ($row = $resultCompanies->fetch_assoc()) {
+    $company_ids[] = $row['company_id'];
+}
+
+
 ?>
 
-<?php
-    require('../connection.php');
-?>
 <html lang="en">
 
 <head>
@@ -23,8 +37,8 @@ if(!isset($_SESSION["student_email"])){
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg   navbar-dark bg-dark">
-    <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg   navbar-dark bg-dark">
+        <div class="container-fluid">
             <a class="navbar-brand" href="#">PESMCOE TNP</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -35,16 +49,16 @@ if(!isset($_SESSION["student_email"])){
                         <a class="nav-link " aria-current="page" href="./studentDashboard.php">My Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./studentProfile.php" > My Profile</a>
+                        <a class="nav-link" href="./studentProfile.php"> My Profile</a>
                     </li>
-                    
-                    
+
+
                 </ul>
-            
-                    <a href="../index.php">    
-                            <button style="background: red; color: white; border-radius: 5px; border-color: red; padding: 5px 5px 5px 5px;"> Logout </button>
-                        </a>
-                
+
+                <a href="../index.php">
+                    <button style="background: red; color: white; border-radius: 5px; border-color: red; padding: 5px 5px 5px 5px;"> Logout </button>
+                </a>
+
             </div>
         </div>
     </nav>
@@ -58,7 +72,7 @@ if(!isset($_SESSION["student_email"])){
         </div>
     </div>
 
-    <table class="table text-center mt-3" >
+    <table class="table text-center mt-3">
         <thead class="table-dark">
             <tr>
                 <th scope="col">Sr.No</th>
@@ -71,30 +85,34 @@ if(!isset($_SESSION["student_email"])){
                 <th scope="col">Apply Status</th>
             </tr>
         </thead>
-            <tbody>
-                <?php
-                    $sql="select ID, CompanyName,JobRole,JobLocation,Package,PassoutYear,RegistrationStartDate,RegistrationEndDate from adminaddcompanydetails"; 
-    
-                    $result = mysqli_query($conn, $sql);
+        <tbody>
+            <?php
 
-                    while($row = mysqli_fetch_array($result))
-                    {
-                        echo '<tr>';
-                        echo '<td>'.$row['ID'].'</td>';
-                        echo '<td>'.$row['CompanyName'].'</td>';
-                        echo '<td>'.$row['JobRole'].'</td>';
-                        echo '<td>'.$row['JobLocation'].'</td>';
-                        echo '<td>'.$row['Package'].'</td>';
-                        echo '<td>'.$row['RegistrationStartDate'].'</td>';
-                        echo '<td>'.$row['RegistrationEndDate'].'</td>';
-                        echo '<td>'.'<button class="btn btn-success no-cursor" >Applied</button>'.'</td>';
-                    
-                    }
+            if (count($company_ids) == 0) {
+                echo "<tr><td><center>No Companies Applied.</center></td></tr>";
+            } else {
+                $sql = "select ID, CompanyName,JobRole,JobLocation,Package,PassoutYear,RegistrationStartDate,RegistrationEndDate from adminaddcompanydetails WHERE ID IN (" . implode(',', $company_ids) . ")";
+
+                $result = mysqli_query($conn, $sql);
+
+                while ($row = mysqli_fetch_array($result)) {
+                    echo '<tr>';
+                    echo '<td>' . $row['ID'] . '</td>';
+                    echo '<td>' . $row['CompanyName'] . '</td>';
+                    echo '<td>' . $row['JobRole'] . '</td>';
+                    echo '<td>' . $row['JobLocation'] . '</td>';
+                    echo '<td>' . $row['Package'] . '</td>';
+                    echo '<td>' . $row['RegistrationStartDate'] . '</td>';
+                    echo '<td>' . $row['RegistrationEndDate'] . '</td>';
+                    echo '<td>' . '<button class="btn btn-success no-cursor" >Applied</button>' . '</td>';
+                }
+            }
+
             ?>
 
-            </tbody>
-        </table>
-            
+        </tbody>
+    </table>
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -50,7 +50,7 @@ $questions = $result->fetch_assoc()["Questions"];
                     <div>
                         <div class="card mt-4 border-top  border-primary">
                             <div class="card-header text-center">
-                                <h4>Add Questions</h4>
+                                <h4>Interview Questions</h4>
                             </div>
                             <div class="card-body">
                                 <input type="hidden" name="companyid" value="<?php echo $_GET["id"]; ?>" />

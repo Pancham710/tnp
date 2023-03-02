@@ -11,8 +11,9 @@ if(isset($_POST["email"]) && isset($_POST["password"])){
     $Password  = $_POST["password"];
     $sql = "SELECT id  FROM adminlogin WHERE email = '".$Email."' AND password = '".$Password."' " ;
     $result = $conn->query($sql);
- 
-    if ($result->num_rows > 0) {
+    $sql1 = "SELECT id  FROM admins WHERE email = '".$Email."' AND adminpassword = '".$Password."' " ;
+    $result1 = $conn->query($sql1);
+    if ($result->num_rows > 0 || $result1->num_rows > 0 ) {
         //Login Success
         $_SESSION["admin_email"] = $Email;
         header('location: ./adminDashboard.php');
@@ -21,6 +22,8 @@ if(isset($_POST["email"]) && isset($_POST["password"])){
         header('location: ./adminLogin.php?error=Invalid Credentials');
         exit;
     }
+
+    
 } else {
     header('location: ./adminLogin.php?error=Please Fill All The Details');
     exit;

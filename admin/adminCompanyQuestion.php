@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if(!isset($_SESSION["admin_email"])){
+    header('location: ./adminLogin.php?error=Please login before accessing the page.');
+    exit;
+}
+?>
 <!doctype html>
 <html lang="en">
 

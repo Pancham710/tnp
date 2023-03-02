@@ -1,19 +1,13 @@
 <?php
 session_start();
 
-if(!isset($_SESSION["admin_email"])){
-    header('location: ./adminLogin.php?error=Please login before accessing the page.');
-    exit;
-}
-?>
-<?php
-session_start();
-
 require('../connection.php');
 
-// Code To Get Username 
-if (!isset($_GET["id"])) {
-    die('something went wrong.');
+ 
+
+if(!isset($_SESSION["admin_email"])){
+    header('location: ./studentLogin.php?error=Please login before accessing the page.');
+    exit;
 }
 
 $sql = "SELECT Questions FROM questionbank WHERE ID = '" . $_GET["id"] . "'";
@@ -56,13 +50,13 @@ $questions = $result->fetch_assoc()["Questions"];
                     <div>
                         <div class="card mt-4 border-top  border-primary">
                             <div class="card-header text-center">
-                                <h4>Add Questions</h4>
+                                <h4>Interview Questions</h4>
                             </div>
                             <div class="card-body">
                                 <input type="hidden" name="companyid" value="<?php echo $_GET["id"]; ?>" />
                                 <div class="mb-3">
                                     <label for="placedcompanyid" class="form-label"> Questions Asked </label>
-                                    <textarea name="questions" class="form-control" rows="10" cols="50" placeholder="Write Questions Here"><?php echo $questions; ?></textarea>
+                                    <textarea name="questions" class="form-control" rows="10" cols="50" placeholder="Write Questions Here" disabled><?php echo $questions; ?></textarea>
                                 </div>
 
                                 <?php
@@ -70,20 +64,7 @@ $questions = $result->fetch_assoc()["Questions"];
                                     echo "<center style='color:red;font-size:18px;border:1px solid red;padding:3px;margin:5px;'>" . $_GET["error"] . "</center>";
                                 }
                                 ?>
-
-
-                                <div class="card-body text-center">
-                                    <div class="m-2">
-                                        <button type="submit" class="btn btn-lg btn-info" name="AddQuestions" style="width:50%;">Save</button>
-                                    </div>
-
-                                    <div class="m-2">
-                                        <a href="./adminDashboard.php">
-                                            <button type="button" class="btn btn-lg  btn-info" style="width:50%;">Cancel</button>
-                                        </a>
-                                    </div>
-                                </div>
-
+ 
                             </div>
                         </div>
                     </div>

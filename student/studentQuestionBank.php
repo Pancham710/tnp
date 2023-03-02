@@ -77,16 +77,17 @@ if(!isset($_SESSION["student_email"])){
         </thead>
             <tbody>
                 <?php
-                    $sql="select ID, CompanyName from adminaddcompanydetails"; 
+                    $sql="select ID, CompanyName from questionbank"; 
     
                     $result = mysqli_query($conn, $sql);
-
+                    $no=0;
                     while($row = mysqli_fetch_array($result))
                     {
+                        $no+=1;
                         echo '<tr>';
-                        echo '<td>'.$row['ID'].'</td>';
+                        echo '<td>'.$no.'</td>';
                         echo '<td>'.$row['CompanyName'].'</td>';
-                        echo '<td>'.'<button type="button" class="btn btn-success">View</button>'.'</td>';
+                        echo '<td>'.'<a href="./studentQuestionBankShow.php?id='.$row['ID'].'"><button type="button" class="btn btn-success">View</button></a>'.'</td>';
                     
                     }
             ?>

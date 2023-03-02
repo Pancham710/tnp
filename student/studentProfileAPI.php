@@ -1,3 +1,14 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+</head>
+
+</html>
 <?php
 session_start();
 require('../connection.php');
@@ -41,19 +52,27 @@ if (isset($_POST['MyProfile'])) {
     $sql_query = "INSERT INTO  studentprofiles (StudentName,EmailId,ContactNumber,AlternateContactNumber,FatherName,MotherName,DOB,PRN,Branch,YOP,CurrentSemester,SSCPercentage,DiplomaHSC,DiplomaHSCPercentage,AggregatePercentage, ProfileImage, Resumes) VALUES('$StudentName', '$Email', '$Contact', '$AlternateContact', '$FatherName', '$MotherName', '$DOB', '$PRN', '$Branch', '$YOP','$CurrentSemester', '$SSCPercentage','$DiplomaHSC', '$DiplomaHSCPercentage', '$AggregatePercentage', '$ProfilePicture', '$Resume')";
 
     if ($conn->query($sql_query) === TRUE) {
-        
-        
-        
-        echo "New record created successfully<br><br>";
-
-        echo "<a href='' class='btn btn-success'>GO TO DASHBOARD</a>";
         // move_uploaded_file($_FILES['profilepictureid']['tmp_name'], './student/ProfilePictures/'.$_FILES['profilepictureid']);
         move_uploaded_file($ProfilePictureTempName, $ProfilePictureFolder);
         move_uploaded_file($ResumeTempName, $ResumeFolder);
         
+        ?>
+        
+        <div class="card-body text-center" style="margin-top: 15%">
+            <div class="m-2">
+
+                <h3> Added Placed Student Details Successfully </h3>
+                <a href="./studentDashboard.php">
+                    <button type="button" class="btn btn-lg btn-info" style="width:50%;">Go To Dashboard</button>
+                </a>
+            </div>
+        </div>
+        
+<?php 
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
     $conn->close();
 }
+?>

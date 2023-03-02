@@ -1,9 +1,16 @@
 
 <?php
     require('../connection.php');
+    session_start();
+
+    if(!isset($_SESSION["admin_email"])){
+        header('location: ./adminLogin.php?error=Please login before accessing the page.');
+        exit;
+    }
 ?>
 
 <html lang="en">
+
 
 <head>
     <!-- Required meta tags -->

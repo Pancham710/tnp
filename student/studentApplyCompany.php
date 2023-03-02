@@ -27,7 +27,17 @@ $SSCPercentage = (float)$user_details["SSCPercentage"];
 $DiplomaHSCPercentage = (float)$user_details["DiplomaHSCPercentage"];
 $AggregatePercentage = (float)$user_details["AggregatePercentage"];
 
-// Code To Get Username End
+
+$sqlCompanies = "SELECT company_id FROM appliedcompanies WHERE student_id = '".$student_id."'";
+$resultCompanies = $conn->query($sqlCompanies);
+
+$company_ids = array();  
+
+while ($row = $resultCompanies->fetch_assoc()) {
+    $company_ids[] = $row['company_id']; 
+}
+ 
+
 ?>
 
 
@@ -99,7 +109,7 @@ $AggregatePercentage = (float)$user_details["AggregatePercentage"];
         </thead>
         <tbody>
             <?php
-            $sql = "select ID, CompanyName,SSCPercentage,HSCPercentage,AggregatePercentage,JobRole,JobLocation,Package,PassoutYear,RegistrationStartDate,RegistrationEndDate from adminaddcompanydetails";
+           $sql = "SELECT ID, CompanyName, SSCPercentage, HSCPercentage, AggregatePercentage, JobRole, JobLocation, Package, PassoutYear, RegistrationStartDate, RegistrationEndDate FROM adminaddcompanydetails WHERE ID NOT IN (" . implode(',', $company_ids) . ")";
 
             $result = mysqli_query($conn, $sql);
             $no = 1;

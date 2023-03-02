@@ -25,3 +25,4 @@ if(isset($_POST["email"]) && isset($_POST["password"])){
     header('location: ./adminLogin.php?error=Please Fill All The Details');
     exit;
 }
+?>

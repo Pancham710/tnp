@@ -26,6 +26,31 @@ if(!isset($_SESSION["admin_email"])){
 </head>
 <body>
 
+<script>
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("example2");
+        tr = table.getElementsByTagName("tr");
+        
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+ 
+
+</script>
 <div class="container">
 
 
@@ -50,11 +75,11 @@ if(!isset($_SESSION["admin_email"])){
 </div>
 
         <form class="d-flex justify-content-center mt-3" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search by Company Name / Student Name / Package / Stream..." aria-label="Search" style="max-width: 35rem">
+                <input class="form-control me-2" type="search" id ="myInput" onkeyup="myFunction()" placeholder="Search by Student Name ....." aria-label="Search" style="max-width: 35rem">
                 <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
 
-        <table class="table text-center mt-3" >
+        <table id="example2" class="table text-center mt-3" >
         <thead class="table-dark">
             <tr>
                 <th scope="col">Sr.No</th>
@@ -72,12 +97,12 @@ if(!isset($_SESSION["admin_email"])){
                     $sql="select ID, StudentName, CompanyName, Package, ContactNumber,YOP, Branch from placedstudents"; 
     
                     $result = mysqli_query($conn, $sql);
-
+                    $no = 1;
 
                     while($row = mysqli_fetch_array($result))
                     {
                         echo '<tr>';
-                        echo '<td>'.$row['ID'].'</td>';
+                        echo '<td>' . $no . '</td>';
                         echo '<td>'.$row['StudentName'].'</td>';
                         echo '<td>'.$row['CompanyName'].'</td>';
                         echo '<td>'.$row['Package'].'</td>';
@@ -86,6 +111,7 @@ if(!isset($_SESSION["admin_email"])){
                         echo '<td>'.$row['Branch'].'</td>';
                         // echo '<td>'.$row['ProfileImage'].'</td>';
                         // echo '<td>'.$row['Resumes'].'</td>';
+                        $no += 1;
                     
                     }
                     

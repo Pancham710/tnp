@@ -7,7 +7,7 @@ if(!isset($_SESSION["admin_email"])){
 }
 ?>
 <?php
-session_start();
+ 
 
 require('../connection.php');
 

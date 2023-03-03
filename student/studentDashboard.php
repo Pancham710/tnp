@@ -35,6 +35,9 @@ if(!isset($_SESSION["student_email"])){
                     <li class="nav-item">
                         <a class="nav-link" href="./studentProfile.php" > My Profile</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./resume.php" > Create Resume</a>
+                    </li>
                 </ul>
 
                     <a href="../index.php">    

@@ -73,6 +73,7 @@ if(!isset($_SESSION["admin_email"])){
             </div>
     </div>
 </div>
+<a href="export.php"><button type="submit1" name='export_excel_btn' class="btn btn-primary">Export to Excel</button></a>
 
         <form class="d-flex justify-content-center mt-3" role="search">
                 <input class="form-control me-2" type="search" id ="myInput" onkeyup="myFunction()" placeholder="Search by Student Name ....." aria-label="Search" style="max-width: 35rem">

@@ -5,7 +5,7 @@ require('../connection.php');
 
  
 
-if(!isset($_SESSION["admin_email"])){
+if(!isset($_SESSION["student_email"])){
     header('location: ./studentLogin.php?error=Please login before accessing the page.');
     exit;
 }

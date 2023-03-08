@@ -25,6 +25,37 @@ if(!isset($_SESSION["admin_email"])){
     <title>Admin | Placed Student Details</title>
 </head>
 <body>
+<nav class="navbar navbar-expand-lg   navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">PESMCOE TNP</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="./adminDashboard.php">My Dashboard</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="" > View Statistics</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="" > View Database</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="" > Change Password</a>
+                    </li>
+                </ul>
+
+                    <a href="../index.php">    
+                            <button style="background: red; color: white; border-radius: 5px; border-color: red; padding: 5px 5px 5px 5px;"> Logout </button>
+                        </a>
+                
+            </div>
+        </div>
+    </nav>
 
 <script>
     function myFunction() {
@@ -73,12 +104,12 @@ if(!isset($_SESSION["admin_email"])){
             </div>
     </div>
 </div>
-<a href="export.php"><button type="submit1" name='export_excel_btn' class="btn btn-primary">Export to Excel</button></a>
 
         <form class="d-flex justify-content-center mt-3" role="search">
                 <input class="form-control me-2" type="search" id ="myInput" onkeyup="myFunction()" placeholder="Search by Student Name ....." aria-label="Search" style="max-width: 35rem">
                 <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
+        <a href="export.php"><button type="submit1" name='export_excel_btn' class="btn btn-primary m-2" style="margin-top:-20px;float:right;">Export to Excel</button></a>
 
         <table id="example2" class="table text-center mt-3" >
         <thead class="table-dark">

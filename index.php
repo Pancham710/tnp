@@ -68,7 +68,7 @@
                 <div>
                     <div class="card mt-4 border-top  border-primary">
                         <div class="card-header text-center">
-                            <h4>Admin / Co-ordinator Login</h4>
+                            <h4>Admin Login</h4>
                         </div>
                         <div class="card-body text-center">
                             <div class="m-2">

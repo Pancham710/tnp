@@ -68,6 +68,12 @@ while ($row = $resultCompanies->fetch_assoc()) {
                     <li class="nav-item">
                         <a class="nav-link" href="./studentProfile.php"> My Profile</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./resume.php" > Create Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./changePassword.php" > Change Password</a>
+                    </li>
 
 
                 </ul>
@@ -79,7 +85,7 @@ while ($row = $resultCompanies->fetch_assoc()) {
             </div>
         </div>
     </nav>
-    <b style="font-size:20px;margin:20px;"><?php echo $user_name; ?></b>
+    <b style="font-size:20px;margin:20px;"><?php echo "Hi, ".$user_name; ?></b>
     <div class="col-12">
         <div>
             <div class="card mt-4 border-top ">

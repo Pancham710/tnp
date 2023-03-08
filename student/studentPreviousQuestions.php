@@ -31,11 +31,17 @@ if(!isset($_SESSION["student_email"])){
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="#">My Profile</a>
+                <li class="nav-item">
+                        <a class="nav-link " aria-current="page" href="./studentDashboard.php">My Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" >My Interview</a>
+                        <a class="nav-link" href="./studentProfile.php" > My Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./resume.php" > Create Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./changePassword.php" > Change Password</a>
                     </li>
                     
                     

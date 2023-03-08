@@ -4,7 +4,12 @@ require('../connection.php');
 if (!isset($_SESSION["student_email"])) {
     header('location: ./studentLogin.php?error=Please login before accessing the page.');
     exit;
+    
 }
+$sql = "SELECT StudentName FROM studentprofiles WHERE EmailId = '" . $_SESSION["student_email"] . "'";
+    $result = $conn->query($sql);
+
+    $user_name = $result->fetch_assoc()["StudentName"];
 
 $sql = "SELECT id FROM studentlogin WHERE email = '" . $_SESSION["student_email"] . "'";
 $resulta = $conn->query($sql);
@@ -51,6 +56,12 @@ while ($row = $resultCompanies->fetch_assoc()) {
                     <li class="nav-item">
                         <a class="nav-link" href="./studentProfile.php"> My Profile</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./resume.php" > Create Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="./changePassword.php" > Change Password</a>
+                    </li>
 
 
                 </ul>
@@ -62,6 +73,8 @@ while ($row = $resultCompanies->fetch_assoc()) {
             </div>
         </div>
     </nav>
+    <b style="font-size:20px;margin:20px;"><?php echo "Hi, ".$user_name; ?></b>
+    
     <div class="col-12">
         <div>
             <div class="card mt-4 border-top ">
@@ -94,10 +107,10 @@ while ($row = $resultCompanies->fetch_assoc()) {
                 $sql = "select ID, CompanyName,JobRole,JobLocation,Package,PassoutYear,RegistrationStartDate,RegistrationEndDate from adminaddcompanydetails WHERE ID IN (" . implode(',', $company_ids) . ")";
 
                 $result = mysqli_query($conn, $sql);
-
+                $no = 1;
                 while ($row = mysqli_fetch_array($result)) {
                     echo '<tr>';
-                    echo '<td>' . $row['ID'] . '</td>';
+                    echo '<td>' . $no. '</td>';
                     echo '<td>' . $row['CompanyName'] . '</td>';
                     echo '<td>' . $row['JobRole'] . '</td>';
                     echo '<td>' . $row['JobLocation'] . '</td>';
@@ -105,6 +118,7 @@ while ($row = $resultCompanies->fetch_assoc()) {
                     echo '<td>' . $row['RegistrationStartDate'] . '</td>';
                     echo '<td>' . $row['RegistrationEndDate'] . '</td>';
                     echo '<td>' . '<button class="btn btn-success no-cursor" >Applied</button>' . '</td>';
+                    $no += 1;
                 }
             }
 

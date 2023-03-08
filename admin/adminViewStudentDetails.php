@@ -41,7 +41,7 @@ if(!isset($_SESSION["admin_email"])){
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="" > View Database</a>
+                        <a class="nav-link" href="./adminViewStatistics.php" > View Database</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="" > Change Password</a>

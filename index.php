@@ -82,9 +82,32 @@
                 </div>
             </div>
             <div class="col-2">
+            
 
             </div>
         </div>
+        <div class="row">
+            <div class="col-2">
+
+            </div>
+            <div class="col-8">
+                <div>
+                    <div class="card mt-4 border-top  border-primary">
+                        <div class="card-header text-center">
+                            <h4>HR Login</h4>
+                        </div>
+                        <div class="card-body text-center">
+                            <div class="m-2">
+                                <a href="./hr/hrlogin.php">
+                                    <button type="button" class="btn btn-lg btn-info" style="width:60%;">LOGIN</button>
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
     </div>
 
     <!-- Optional JavaScript -->

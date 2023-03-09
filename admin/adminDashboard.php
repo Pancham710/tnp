@@ -34,18 +34,18 @@ if(!isset($_SESSION["admin_email"])){
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="" > View Statistics</a>
+                        <a class="nav-link" href="./adminViewStatistics.php" > View Statistics</a>
                     </li>
                     
                     <li class="nav-item">
-                        <a class="nav-link" href="" > View Database</a>
+                        <a class="nav-link" href="./adminViewDatabase.php" > View Database</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="" > Change Password</a>
+                        <a class="nav-link" href="./adminChangePassword.php" > Change Password</a>
                     </li>
                 </ul>
 
-                    <a href="../index.php">    
+                    <a href="../homepage.php">    
                             <button style="background: red; color: white; border-radius: 5px; border-color: red; padding: 5px 5px 5px 5px;"> Logout </button>
                         </a>
                 

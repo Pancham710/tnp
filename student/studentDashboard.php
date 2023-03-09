@@ -43,7 +43,7 @@ if(!isset($_SESSION["student_email"])){
                     </li>
                 </ul>
 
-                    <a href="../index.php">    
+                    <a href="../homepage.php">    
                             <button style="background: red; color: white; border-radius: 5px; border-color: red; padding: 5px 5px 5px 5px;"> Logout </button>
                         </a>
                 

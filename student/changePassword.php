@@ -26,7 +26,7 @@
                             <h4> Change Password </h4>
                         </div>
                         <div class="card-body text-left">
-                        <form method="POST" action="./studentLoginAPI.php">
+                        <form method="POST" action="./changePasswordAPI.php">
                             <div class="mb-3">
                                 <label for="uname" class="form-label">Old Password</label>
                                 <input type="password" name="old_password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
@@ -38,6 +38,11 @@
                             </div>
                             
                             <br>
+                            <?php 
+                            if(isset($_GET["error"])){
+                                echo "<center style='font-size:18px;color:red;'>".$_GET["error"]."</center>";
+                            }
+                            ?>
                             
                             <div class="text-center">
                                 <div class="m-2">

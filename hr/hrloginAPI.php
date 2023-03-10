@@ -11,6 +11,7 @@ if(isset($_POST["email"]) && isset($_POST["password"])){
     $Password  = $_POST["password"];
     $sql = "SELECT id  FROM hrlogin WHERE email = '".$Email."' AND password = '".$Password."' " ;
     $result = $conn->query($sql);
+    
  
     if ($result->num_rows > 0) {
         //Login Success
